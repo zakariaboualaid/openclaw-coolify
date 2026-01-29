@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     lsof \
     openssl \
     ca-certificates \
-    golang-go \
+    ca-certificates \
     gnupg \
     docker.io \
     ripgrep fd-find fzf bat \
@@ -30,6 +30,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sqlite3 \
     pass \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Go (Latest)
+RUN curl -L "https://go.dev/dl/go1.23.4.linux-amd64.tar.gz" -o go.tar.gz && \
+    tar -C /usr/local -xzf go.tar.gz && \
+    rm go.tar.gz
+ENV PATH="/usr/local/go/bin:${PATH}"
 
 # Install Cloudflare Tunnel (cloudflared)
 RUN ARCH=$(dpkg --print-architecture) && \
