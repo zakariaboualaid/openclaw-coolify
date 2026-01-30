@@ -492,4 +492,4 @@ if [ "${OPENCLAW_PRINT_ACCESS:-1}" = "1" ]; then
   echo ""
 fi
 
-exec openclaw gateway
+exec openclaw gateway run
